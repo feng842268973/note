@@ -15,7 +15,7 @@ proxy应该被称为*代理*，而非*劫持*，是Object.defineProperty的加�
 **vm**
 Virtual DOM是对DOM的抽象，本质是js对象，这个对象是更加轻量级的对DOM的描述。
 尽可能地少操作DOM，在patch过程中尽可能一次性将差异更新到DOM中。
-不要盲目地区更新视图，而是通过DOM-Diff算法对比数据变化前后的状态，计算出视图哪些地方需要更新，只更新需要更新的地方。】
+不要盲目地区更新视图，而是通过DOM-Diff算法对比数据变化前后的状态，计算出视图哪些地方需要更新，只更新需要更新的地方。
 
 以新的VNode为基准，改造旧的oldVNode使之成为跟新的VNode一样，这就是patch过程要做的事
 **创建节点**：只有三种节点可以被创建被插入DOM，元素节点（判断是否有tag标签），文本节点，注释节点（判断isComment）
@@ -37,7 +37,7 @@ Virtual DOM是对DOM的抽象，本质是js对象，这个对象是更加轻量�
 
 #### Object的变化侦测####
 **在getter中收集依赖，在setter中通知依赖更新**
-通过Object.defineProperty方法实现了对object数据的可观测，仅能观测到object数据的取值和设置值，当向object数据添加一堆新的key/value或者删除一对key/value，是无法观测的，无法通知依赖，也无法驱动视图更新，可以用Vue.set和Vue.delete，封装了Observer类，把object数据的所有属性都转换成getter/seter形式来侦测变化。在getter中收集依赖，在setter中通知依赖更新，封装了依赖管理器Dep，用于存储手机到的依赖，并且为每个依赖都创建了一个Watcher实例，由Watcher实例去做真是的更新操作。
+通过Object.defineProperty方法实现了对object数据的可观测，仅能观测到object数据的取值和设置值，当向object数据添加一堆新的key/value或者删除一对key/value，是无法观测的，无法通知依赖，也无法驱动视图更新，可以用Vue.set和Vue.delete，封装了Observer类，把object数据的所有属性都转换成getter/seter形式来侦测变化。在getter中收集依赖，在setter中通知依赖更新，封装了依赖管理器Dep，用于存储手机到的依赖，并且为每个依赖都创建了一个Watcher实例，由Watcher实例去做真实的更新操作。
 
 
 其整个流程大致如下：
@@ -67,7 +67,7 @@ Array型数据还是在getter中收集依赖，但是Array型数据没有setter�
 **initState**
 初始化实例状态，先初始化props。然后data，watch。
 ##### 模板编译#####
-只存在于王铮版本中
+只存在于完整版本中
 ##### 挂载#####
 创建vue实例，并用其替换el选项对应的DOM元素，同时要开启对模板中数据的监控，当数据发生变化时通知其依赖进行视图更新。
 
