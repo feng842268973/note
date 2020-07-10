@@ -30,7 +30,7 @@ Function.prototype.myCall=function(context){
 ```
 ### apply ###
 ```
-Function.prototype.myCall=function(context){
+Function.prototype.myApply=function(context){
     if(typeof this!='function'){
         throw new TypeError('error')
     }
@@ -51,7 +51,7 @@ Function.prototype.myCall=function(context){
 function _new(fn,...args){
     const obj=Object.create(fn.prototype)
     const ret=fn.apply(obj,arg)
-    return res instanceof Object?ret:obj
+    return ret instanceof Object?ret:obj
 }
 ```
 ### promise ###
